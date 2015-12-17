@@ -140,7 +140,7 @@ Sign Up
   }
   .phone-form {
     display: table;
-    margin: 0 auto 2em;
+    margin: 0 auto 3em;
   }
   .phone-label {
     font-size: 1.2em;
@@ -151,16 +151,21 @@ Sign Up
     border-right-width: 1px;
     padding: 10px 12px;
     color: $dark-grey;
-    .focus {
-      background-color: $blue;
-      color: $white;
+
+    transition: color .5s;
+    &.focus {
+      color: $blue;
+    }
+    &.valid {
+      color: $green;
+    }
+    &.error {
+      color: $red;
     }
   }
   input {
     padding: 10px;
-    &:focus {
-      outline: none;
-    }
+    outline: none;
   }
   .phone-input {
     font-size: 1.2em;
@@ -171,13 +176,15 @@ Sign Up
     border-bottom-right-radius: 3px;
   }
   .submit-btn {
-    font-size: 1em;
+    font-size: .9em;
+    font-family: $lato;
     line-height: 1em;
     border-radius: 3px;
     background-color: $blue;
     color: $white;
     border: none;
     width: 50%;
+    padding: 15px;
     &:hover {
       background-color: #27A7C6;
     }
