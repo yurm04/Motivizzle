@@ -67,7 +67,7 @@ body {
   font: normal 400 16px/1.25em 'PT Sans';
   -webkit-font-smoothing: antialiased;
   color: #353434;
-  background-color: #fbfbfb; }
+  background-color: #f4f7f9; }
 
 /***************************************
 Fonts
@@ -210,3 +210,23 @@ Sign Up
     padding: 15px; }
     .sign-up .submit-btn:hover {
       background-color: #27A7C6; }
+
+/***************************************
+Footer
+***************************************/
+footer {
+  color: #817E7F;
+  background-color: #353434;
+  padding: 1.25em 0;
+  text-align: center;
+  margin-top: 3em; }
+
+.social {
+  text-align: center;
+  font-size: 1.25em;
+  margin: 0 1.25em;
+  display: inline-block;
+  transition: color .2s; }
+  .social:hover {
+    color: #1794b2;
+    cursor: pointer; }

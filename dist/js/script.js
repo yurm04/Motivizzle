@@ -1,9 +1,12 @@
+var currentPhone = ['('];
 (function() {
 
     var phone = document.getElementById('phone-input');
     var label = document.getElementById('phone-label');
     var submit = document.getElementById('phone-submit');
-    var phoneFormat = '(_ _ _)_ _ _-_ _ _ _';
+    var phoneFormat = '(_ _ _)  _ _ _ _ - _ _ _ _';
+    // var phoneFormat = ['(', '_', '_', '_', ')', '_', '_', '_', '-', '_', '_', '_', '_'];
+
 
     phone.setAttribute('placeholder', phoneFormat);
 
@@ -50,13 +53,6 @@
         } else if (elem.className.match(targetClass)) {
             elem.classList.remove(targetClass);
         }
-    }
-
-    function phoneMask(e) {
-        var keyCode = e.keyCode;
-        console.log(keyCode);
-
-
     }
 })();
 

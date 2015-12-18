@@ -12,7 +12,7 @@ body {
   font: normal 400 16px/1.25em 'PT Sans';
   -webkit-font-smoothing: antialiased;
   color: $black;
-  background-color: $white;
+  background-color: $light-bg;
 }
 
 /***************************************
@@ -191,6 +191,28 @@ Sign Up
   }
 }
 
-.form {
+/***************************************
+Footer
+***************************************/
 
+footer {
+  color: $blackish;
+  background-color: $black;
+  padding: 1.25em 0;
+  text-align: center;
+  margin-top: 3em;
+}
+
+.social {
+  text-align: center;
+  font-size: 1.25em;
+  margin: 0 1.25em;
+  display: inline-block;
+
+  transition: color .2s;
+
+  &:hover {
+    color: $blue;
+    cursor: pointer;
+  }
 }
