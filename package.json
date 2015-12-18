@@ -4,7 +4,10 @@
   "description": "Daily inspiration rap lyrics",
   "main": "server.js",
   "dependencies": {
-    "gulp": "^3.9.0"
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "mongoose": "^4.3.2"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

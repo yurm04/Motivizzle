@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Motivizzle</title>
 
-  <link rel="stylesheet" href="dist/css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div id="app">
@@ -18,12 +18,12 @@
       <p>Get inspirational texts or emails from your favorite rappers. Sign up now.</p>
 
       <div class="sign-up">
-        <form>
+        <form method="post" action="/add">
           <div class="phone-form">
             <label class="phone-label icon-phone" for="phone" id="phone-label"></label>
             <input type="tel" name="phone" class="phone-input" id="phone-input">
           </div>
-          <input type="button" class="submit-btn" id="phone-submit" value="Sign Up">
+          <input type="submit" class="submit-btn" id="phone-submit" value="Sign Up">
         </form>
       </div>
     </section>
@@ -33,6 +33,6 @@
       <div class="social icon-facebook2"></div>
     </footer>
   </div>
-  <script src="dist/js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

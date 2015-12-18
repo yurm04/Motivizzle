@@ -14,8 +14,6 @@ var currentPhone = ['('];
 
     phone.addEventListener('blur', validatePhone);
 
-    phone.addEventListener('keypress', phoneMask);
-
     submit.addEventListener('click', validatePhone);
 
     function togglePhone() {
