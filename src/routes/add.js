@@ -1,6 +1,6 @@
 // add.js =============================
 
-var User = require('./src/models/User.js');
+var User = require('../models/User.js');
 
 var validatePhone = function(phone) {
     if (!phone || phone.length < 10) {
@@ -17,27 +17,39 @@ var validatePhone = function(phone) {
     return validFormat;
 };
 
-modules.exports.formHandler = function(req, res) {
-    var phone = req.params.phone;
+module.exports.formHandler = function(req, res) {
+    var phone = req.body.phone;
 
     if (!phone) {
         return (res.status(400).send('No Phone Number Passed.'));    // no phone number passed, bad request
     }
 
-    var validPhone = validPhone(phone);
+    var validPhone = validatePhone(phone);
 
     if (!validPhone) {
         return (res.status(400).send('Invalid phone number.'));
     }
 
-    var user = User();
-    user.phone = validPhone;
-
-    user.save(function(err) {
+    // check if number exists
+    User.find({phone : validPhone}, function(err, foundPhone) {
         if (err) {
-            return (res.status(500).send('Unable to add phone number'));
+            return (res.status(500).send('An error occurred'));
+        }
+        if (foundPhone.length > 0) {
+            console.log(foundPhone);
+            return (res.status(409).send('Phone number already exists'));
         }
 
-        return (res.status(200).send('Successfully added phone number'));
+        // if no record exists create
+        var user = User();
+        user.phone = validPhone;
+
+        user.save(function(err) {
+            if (err) {
+                return (res.status(500).send('Unable to add phone number'));
+            }
+
+            return (res.status(200).send('Successfully added phone number'));
+        });
     });
 };

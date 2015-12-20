@@ -1,12 +1,21 @@
 // server.js ==========================
 
-var express    = require('express');
-var app        = express();
-var bodyParser = require('body-parser');
+var express     = require('express');
+var app         = express();
+var bodyParser  = require('body-parser');
+var mongoose    = require('mongoose');
 
-var Lyric      = require('./src/models/Lyric.js');
-var add        = require('./src/routes/add.js');
-var PORT       = process.env.PORT || 3000;
+var add         = require('./src/routes/add.js');
+var unsubscribe = require('./src/routes/remove.js');
+var PORT        = process.env.PORT || 3000;
+
+// create DB connection
+mongoose.connect('mongodb://127.0.0.1/motiviz');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'DB connection error: '));
+db.once('open', function() {
+    console.log('successfully connected to DB');
+});
 
 // set path for static files
 app.use(express.static(__dirname + '/public'));
@@ -20,8 +29,9 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-// route to form handler
-app.post('/add', add.formHandler);
+// route handlers
+app.post('/add', add.formHandler);                  // route to form handler
+app.post('/unsubscribe', unsubscribe.remove);       // route to unsubscribe handler
 
 var server = app.listen(PORT, function() {
     var host = server.address().address;
