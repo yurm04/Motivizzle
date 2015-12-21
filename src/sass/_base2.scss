@@ -1,0 +1,235 @@
+/***************************************
+Normalize
+***************************************/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body {
+  font: normal 400 16px/1.25em 'PT Sans';
+  -webkit-font-smoothing: antialiased;
+  color: $black;
+  background-color: $light-bg;
+}
+
+/***************************************
+Fonts
+***************************************/
+
+// Imported from Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300|PT+Sans|Permanent+Marker|Covered+By+Your+Grace);
+
+h1 {
+  // font: normal 400 $h1-banner/1em 'Permanent Marker', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: $h1-banner;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1em;
+  font-family: $permanent-marker;
+  color: $white;
+  text-align: center;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 300;
+  font-size: $h2;
+  line-height: 1em;
+  font-family: $lato;
+  text-align: center;
+}
+
+p {
+  font-size: $p;
+}
+
+/***************************************
+Body
+***************************************/
+
+section {
+  margin-bottom: 0;
+  padding: 25px 15px;
+  background-color: $light-bg;
+  text-align: center;
+}
+
+#banner {
+  padding: 70px 10px;
+  background-color: $black;
+  h1 {
+    margin: 0;
+  }
+  h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: $h2;
+    line-height: 1em;
+    font-family: $your-grace;
+    color: $white;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+  }
+}
+
+/***************************************
+Sign Up
+***************************************/
+
+.sign-up {
+  position: relative;
+  border-radius: 3px;
+  margin: 1.5em auto 0;
+  font-size: 1em;
+  display: table;
+  .input {
+    margin: 50px 0;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  .phone-label, input {
+    display: table-cell;
+    vertical-align: middle;
+    border: solid 2px $blue-grey;
+  }
+  .phone-form {
+    display: table;
+    margin: 0 auto 2em;
+  }
+  .phone-label {
+    font-size: 1.2em;
+    line-height: 0;
+    text-align: center;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right-width: 1px;
+    padding: 10px 12px;
+    color: $dark-grey;
+
+    transition: color .5s;
+    &.focus {
+      color: $blue;
+    }
+    &.valid {
+      color: $green;
+    }
+    &.error {
+      color: $red;
+    }
+  }
+  input {
+    padding: 10px;
+    outline: none;
+  }
+  .phone-input {
+    font-size: 1.2em;
+    line-height: 1.2em;
+    text-align: left;
+    border-left-width: 1px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .submit-btn {
+    font-size: .9em;
+    font-family: $lato;
+    line-height: 1em;
+    border-radius: 3px;
+    background-color: $blue;
+    color: $white;
+    border: none;
+    width: 50%;
+    padding: 15px;
+    cursor: pointer;
+
+    transition: background-color .5s;
+    &:hover {
+      background-color: $hover-blue;
+    }
+  }
+}
+
+/***************************************
+Footer
+***************************************/
+
+footer {
+  color: $blackish;
+  background-color: $black;
+  padding: 1.25em 0;
+  text-align: center;
+  margin-top: 2em;
+}
+
+.social {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 0 1.25em;
+  display: inline-block;
+
+  transition: color .2s;
+
+  &:hover {
+    color: $blue;
+    cursor: pointer;
+  }
+}
+
+/***************************************
+Desktop > 901px
+***************************************/
+@media only screen and (min-width: $desk) {
+  h1 {
+    font-size: $h1-banner-lg;
+  }
+
+  h2 {
+    font-size: $h2-lg;
+  }
+
+  p{
+    font-size: $p-lg;
+  }
+
+  /***************************************
+  Body
+  ***************************************/
+
+  section {
+    padding: 30px 150px;
+  }
+
+  #banner {
+    padding: 100px 0;
+    h2 {
+      font-size: $h2-lg;
+    }
+  }
+
+  /***************************************
+  Sign Up
+  ***************************************/
+  .sign-up {
+    margin: 3em auto 0;
+    font-size: 1.5em;
+    .phone-form {
+      margin: 0 auto 3em;
+    }
+  }
+
+  /***************************************
+  Footer
+  ***************************************/
+  footer {
+    margin-top: 3em;
+  }
+
+  .social {
+    font-size: 1.25em;
+    margin: 0 1.25em;
+  }
+
+}
