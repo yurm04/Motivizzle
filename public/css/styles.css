@@ -113,63 +113,73 @@ section {
 /***************************************
 Sign Up
 ***************************************/
-.sign-up {
+.sign-up, .message-box {
   position: relative;
   border-radius: 3px;
   margin: 1.5em auto 0;
   font-size: 1em;
   display: table; }
-  .sign-up .input {
-    margin: 50px 0; }
-    .sign-up .input:first-child {
-      margin-top: 0; }
-  .sign-up .phone-label, .sign-up input {
-    display: table-cell;
-    vertical-align: middle;
-    border: solid 2px #D4DADC; }
-  .sign-up .phone-form {
-    display: table;
-    margin: 0 auto 2em; }
-  .sign-up .phone-label {
-    font-size: 1.2em;
-    line-height: 0;
-    text-align: center;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-right-width: 1px;
-    padding: 10px 12px;
-    color: #817e7f;
-    transition: color .5s; }
-    .sign-up .phone-label.focus {
-      color: #1794b2; }
-    .sign-up .phone-label.valid {
-      color: #27C693; }
-    .sign-up .phone-label.error {
-      color: #C33B3B; }
-  .sign-up input {
-    padding: 10px;
-    outline: none; }
-  .sign-up .phone-input {
-    font-size: 1.2em;
-    line-height: 1.2em;
-    text-align: left;
-    border-left-width: 1px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px; }
-  .sign-up .submit-btn {
-    font-size: .9em;
-    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    line-height: 1em;
-    border-radius: 3px;
-    background-color: #1794b2;
-    color: #fbfbfb;
-    border: none;
-    width: 50%;
-    padding: 15px;
-    cursor: pointer;
-    transition: background-color .5s; }
-    .sign-up .submit-btn:hover {
-      background-color: #27A7C6; }
+
+.phone-label, .message-label, input {
+  display: table-cell;
+  vertical-align: middle;
+  border: solid 2px #D4DADC; }
+
+.phone-label, .message-label {
+  font-size: 1.2em;
+  line-height: 0;
+  text-align: center;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-right-width: 1px;
+  padding: 10px 12px; }
+
+.phone-input, .message-text {
+  font-size: 1.2em;
+  line-height: 1.2em;
+  text-align: left;
+  border-left-width: 1px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 10px; }
+
+.sign-up .input {
+  margin: 50px 0; }
+  .sign-up .input:first-child {
+    margin-top: 0; }
+
+.sign-up .phone-form {
+  display: table;
+  margin: 0 auto 2em; }
+
+.sign-up .phone-label {
+  color: #817e7f;
+  transition: color .5s; }
+  .sign-up .phone-label.focus {
+    color: #1794b2; }
+  .sign-up .phone-label.valid {
+    color: #27C693; }
+  .sign-up .phone-label.error {
+    color: #C33B3B; }
+
+.sign-up input {
+  padding: 10px;
+  outline: none; }
+
+.sign-up .submit-btn {
+  font-size: .9em;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  line-height: 1em;
+  border-radius: 3px;
+  background-color: #1794b2;
+  color: #fbfbfb;
+  border: none;
+  width: 50%;
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color .5s; }
+  .sign-up .submit-btn:hover {
+    background-color: #27A7C6; }
 
 /***************************************
 Footer

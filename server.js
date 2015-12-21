@@ -4,6 +4,7 @@ var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
+var handlebars  = require('express-handlebars');
 
 var add         = require('./src/routes/add.js');
 var unsubscribe = require('./src/routes/remove.js');
@@ -24,9 +25,14 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
+// set handlebars as the templating engine
+app.engine('.handlebars', handlebars({defaultLayout: 'main', extension: '.handlebars'}));
+app.set('view engine', '.handlebars');
+
 // route to homepage
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
+    // res.sendFile(__dirname + '/index.html');
+    res.render('signup', {success: {message: 'You did it!'}});
 });
 
 // route handlers

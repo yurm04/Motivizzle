@@ -78,13 +78,38 @@ section {
 /***************************************
 Sign Up
 ***************************************/
-
-.sign-up {
+.sign-up, .message-box {
   position: relative;
   border-radius: 3px;
   margin: 1.5em auto 0;
   font-size: 1em;
   display: table;
+}
+.phone-label, .message-label, input {
+  display: table-cell;
+  vertical-align: middle;
+  border: solid 2px $blue-grey;
+}
+.phone-label, .message-label {
+  font-size: 1.2em;
+  line-height: 0;
+  text-align: center;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-right-width: 1px;
+  padding: 10px 12px;
+}
+.phone-input, .message-text {
+  font-size: 1.2em;
+  line-height: 1.2em;
+  text-align: left;
+  border-left-width: 1px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  padding: 10px;
+}
+
+.sign-up {
   .input {
     margin: 50px 0;
     &:first-child {
@@ -92,22 +117,15 @@ Sign Up
     }
   }
   .phone-label, input {
-    display: table-cell;
-    vertical-align: middle;
-    border: solid 2px $blue-grey;
+    // display: table-cell;
+    // vertical-align: middle;
+    // border: solid 2px $blue-grey;
   }
   .phone-form {
     display: table;
     margin: 0 auto 2em;
   }
   .phone-label {
-    font-size: 1.2em;
-    line-height: 0;
-    text-align: center;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-right-width: 1px;
-    padding: 10px 12px;
     color: $dark-grey;
 
     transition: color .5s;
@@ -126,12 +144,12 @@ Sign Up
     outline: none;
   }
   .phone-input {
-    font-size: 1.2em;
-    line-height: 1.2em;
-    text-align: left;
-    border-left-width: 1px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    // font-size: 1.2em;
+    // line-height: 1.2em;
+    // text-align: left;
+    // border-left-width: 1px;
+    // border-top-right-radius: 3px;
+    // border-bottom-right-radius: 3px;
   }
   .submit-btn {
     font-size: .9em;
