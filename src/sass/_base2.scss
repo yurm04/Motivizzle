@@ -42,6 +42,11 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
 p {
   font-size: $p;
 }
@@ -81,13 +86,39 @@ Sign Up
 .sign-up, .message-box {
   position: relative;
   border-radius: 3px;
-  margin: 1.5em auto 0;
+  margin: 0 auto 0;
   font-size: 1em;
   display: table;
 }
+
 .phone-label, .message-label, input {
   display: table-cell;
   vertical-align: middle;
+}
+
+.message-text, .message-label {
+  border: solid 2px $blue-grey;
+}
+
+.message-box {
+  &.success {
+    .message-label, .message-text {
+      border-color: $green;
+    }
+    .message-label, h3 {
+      color: $green;
+    }
+  }
+  &.error {
+    .message-label, .message-text {
+      border-color: $red;
+    }
+    .message-label, h3 {
+      color: $red;
+    }
+  }
+}
+.phone-label, input {
   border: solid 2px $blue-grey;
 }
 .phone-label, .message-label {
@@ -108,18 +139,22 @@ Sign Up
   border-bottom-right-radius: 3px;
   padding: 10px;
 }
-
+.message-text {
+  color: $dark-grey;
+  h3, p {
+    margin: 0;
+    line-height: 1.3em;
+  }
+  p {
+    font-size: 1em;
+  }
+}
 .sign-up {
   .input {
     margin: 50px 0;
     &:first-child {
       margin-top: 0;
     }
-  }
-  .phone-label, input {
-    // display: table-cell;
-    // vertical-align: middle;
-    // border: solid 2px $blue-grey;
   }
   .phone-form {
     display: table;

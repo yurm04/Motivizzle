@@ -32,7 +32,7 @@ app.set('view engine', '.handlebars');
 // route to homepage
 app.get('/', function(req, res) {
     // res.sendFile(__dirname + '/index.html');
-    res.render('signup', {success: {message: 'You did it!'}});
+    res.render('signup', {error: {message: 'You\'re ready to start receiving texts'}});
 });
 
 // route handlers

@@ -83,6 +83,10 @@ h2 {
   font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   text-align: center; }
 
+h3 {
+  font-size: 1.2em;
+  margin: 0; }
+
 p {
   font-size: 1em; }
 
@@ -116,13 +120,30 @@ Sign Up
 .sign-up, .message-box {
   position: relative;
   border-radius: 3px;
-  margin: 1.5em auto 0;
+  margin: 0 auto 0;
   font-size: 1em;
   display: table; }
 
 .phone-label, .message-label, input {
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: middle; }
+
+.message-text, .message-label {
+  border: solid 2px #D4DADC; }
+
+.message-box.success .message-label, .message-box.success .message-text {
+  border-color: #27C693; }
+
+.message-box.success .message-label, .message-box.success h3 {
+  color: #27C693; }
+
+.message-box.error .message-label, .message-box.error .message-text {
+  border-color: #B36060; }
+
+.message-box.error .message-label, .message-box.error h3 {
+  color: #B36060; }
+
+.phone-label, input {
   border: solid 2px #D4DADC; }
 
 .phone-label, .message-label {
@@ -143,6 +164,14 @@ Sign Up
   border-bottom-right-radius: 3px;
   padding: 10px; }
 
+.message-text {
+  color: #817e7f; }
+  .message-text h3, .message-text p {
+    margin: 0;
+    line-height: 1.3em; }
+  .message-text p {
+    font-size: 1em; }
+
 .sign-up .input {
   margin: 50px 0; }
   .sign-up .input:first-child {
@@ -160,7 +189,7 @@ Sign Up
   .sign-up .phone-label.valid {
     color: #27C693; }
   .sign-up .phone-label.error {
-    color: #C33B3B; }
+    color: #B36060; }
 
 .sign-up input {
   padding: 10px;
