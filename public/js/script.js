@@ -20,17 +20,18 @@ var currentPhone = ['('];
         toggle(label, 'focus');
     }
 
-    function validatePhone(){
+    function validatePhone(e){
         var val = phone.value;
 
         if (!val) {
             label.classList.remove('error');
             label.classList.remove('valid');
             label.classList.remove('focus');
-            return;
+            e.preventDefault();
+            return false;
         }
 
-        var stripped = val.replace(/\D/g, '');
+        var stripped = val.trim().replace(/\D/g, '');       // trim whitespace and remove non numbers
         if (stripped.length === 10) {
             label.classList.remove('error');
             label.classList.remove('focus');
@@ -40,6 +41,7 @@ var currentPhone = ['('];
             label.classList.remove('valid');
             label.classList.remove('focus');
             label.classList.add('error');
+            e.preventDefault();
             return false;
         }
 

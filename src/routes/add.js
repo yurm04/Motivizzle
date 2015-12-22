@@ -21,23 +21,34 @@ module.exports.formHandler = function(req, res) {
     var phone = req.body.phone;
 
     if (!phone) {
-        return (res.status(400).send('No Phone Number Passed.'));    // no phone number passed, bad request
+        var data = {
+            error : { message: 'Missing phone number.' }
+        };
+        return (res.status(400).render('signup', data));    // no phone number passed, bad request
     }
 
     var validPhone = validatePhone(phone);
 
     if (!validPhone) {
-        return (res.status(400).send('Invalid phone number.'));
+        var data = {
+            error : { message: 'Invalid phone number.' }
+        };
+        return (res.status(400).render('signup', data));
     }
 
     // check if number exists
     User.find({phone : validPhone}, function(err, foundPhone) {
         if (err) {
-            return (res.status(500).send('An error occurred'));
+            var data = {
+                error : { message: 'Could not subscribe.  Try Again.' }
+            };
+            return (res.status(500).render('signup', data));
         }
         if (foundPhone.length > 0) {
-            console.log(foundPhone);
-            return (res.status(409).send('Phone number already exists'));
+            var data = {
+                warning : { message: "Phone number already exists" }
+            };
+            return (res.status(409).render('signup', data));
         }
 
         // if no record exists create
@@ -46,10 +57,16 @@ module.exports.formHandler = function(req, res) {
 
         user.save(function(err) {
             if (err) {
-                return (res.status(500).send('Unable to add phone number'));
+                var data = {
+                    error : { message: 'Could not subscribe.  Try Again.' }
+                };
+                return (res.status(500).render('signup', data));
             }
 
-            return (res.status(200).send('Successfully added phone number'));
+            var data = {
+                success : { message: "Sucessfully subscribed." }
+            };
+            return (res.status(200).render('signup', data));
         });
     });
 };

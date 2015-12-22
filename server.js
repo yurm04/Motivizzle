@@ -8,10 +8,11 @@ var handlebars  = require('express-handlebars');
 
 var add         = require('./src/routes/add.js');
 var unsubscribe = require('./src/routes/remove.js');
-var PORT        = process.env.PORT || 3000;
+var config      = require('./config.js');
+var PORT        = process.env.PORT || config.port;
 
 // create DB connection
-mongoose.connect('mongodb://127.0.0.1/motiviz');
+mongoose.connect(config.dbUrl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DB connection error: '));
 db.once('open', function() {
@@ -32,7 +33,7 @@ app.set('view engine', '.handlebars');
 // route to homepage
 app.get('/', function(req, res) {
     // res.sendFile(__dirname + '/index.html');
-    res.render('signup', {error: {message: 'You\'re ready to start receiving texts'}});
+    res.render('signup');
 });
 
 // route handlers

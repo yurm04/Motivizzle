@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300|PT+Sans|Permanent+Marker|Covered+By+Your+Grace);
 @font-face {
   font-family: 'icomoon';
-  src: url("/fonts/icomoon.eot?2fhm9x");
-  src: url("/fonts/icomoon.eot?2fhm9x#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?2fhm9x") format("truetype"), url("/fonts/icomoon.woff?2fhm9x") format("woff"), url("/fonts/icomoon.svg?2fhm9x#icomoon") format("svg");
+  src: url("/fonts/icomoon.eot?4euwiz");
+  src: url("/fonts/icomoon.eot?4euwiz#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?4euwiz") format("truetype"), url("/fonts/icomoon.woff?4euwiz") format("woff"), url("/fonts/icomoon.svg?4euwiz#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -27,6 +27,9 @@
 
 .icon-mobile:before {
   content: "\e958"; }
+
+.icon-warning:before {
+  content: "\ea07"; }
 
 .icon-cross:before {
   content: "\ea0f"; }
@@ -84,7 +87,7 @@ h2 {
   text-align: center; }
 
 h3 {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin: 0; }
 
 p {
@@ -121,7 +124,6 @@ Sign Up
   position: relative;
   border-radius: 3px;
   margin: 0 auto 0;
-  font-size: 1em;
   display: table; }
 
 .phone-label, .message-label, input {
@@ -131,17 +133,25 @@ Sign Up
 .message-text, .message-label {
   border: solid 2px #D4DADC; }
 
-.message-box.success .message-label, .message-box.success .message-text {
-  border-color: #27C693; }
-
-.message-box.success .message-label, .message-box.success h3 {
-  color: #27C693; }
-
-.message-box.error .message-label, .message-box.error .message-text {
-  border-color: #B36060; }
-
-.message-box.error .message-label, .message-box.error h3 {
-  color: #B36060; }
+.message-box {
+  margin-bottom: 1em;
+  font-size: 1em; }
+  .message-box .message-text h3 {
+    font-size: 1em; }
+  .message-box .message-text p {
+    font-size: .75em; }
+  .message-box.success .message-label, .message-box.success .message-text {
+    border-color: #27C693; }
+  .message-box.success .message-label, .message-box.success h3 {
+    color: #27C693; }
+  .message-box.error .message-label, .message-box.error .message-text {
+    border-color: #B36060; }
+  .message-box.error .message-label, .message-box.error h3 {
+    color: #B36060; }
+  .message-box.warning .message-label, .message-box.warning .message-text {
+    border-color: #E9C07A; }
+  .message-box.warning .message-label, .message-box.warning h3 {
+    color: #E9C07A; }
 
 .phone-label, input {
   border: solid 2px #D4DADC; }
@@ -167,48 +177,45 @@ Sign Up
 .message-text {
   color: #817e7f; }
   .message-text h3, .message-text p {
-    margin: 0;
-    line-height: 1.3em; }
+    margin: 0; }
   .message-text p {
     font-size: 1em; }
 
-.sign-up .input {
-  margin: 50px 0; }
-  .sign-up .input:first-child {
-    margin-top: 0; }
-
-.sign-up .phone-form {
-  display: table;
-  margin: 0 auto 2em; }
-
-.sign-up .phone-label {
-  color: #817e7f;
-  transition: color .5s; }
-  .sign-up .phone-label.focus {
-    color: #1794b2; }
-  .sign-up .phone-label.valid {
-    color: #27C693; }
-  .sign-up .phone-label.error {
-    color: #B36060; }
-
-.sign-up input {
-  padding: 10px;
-  outline: none; }
-
-.sign-up .submit-btn {
-  font-size: .9em;
-  font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  line-height: 1em;
-  border-radius: 3px;
-  background-color: #1794b2;
-  color: #fbfbfb;
-  border: none;
-  width: 50%;
-  padding: 15px;
-  cursor: pointer;
-  transition: background-color .5s; }
-  .sign-up .submit-btn:hover {
-    background-color: #27A7C6; }
+.sign-up {
+  font-size: 0.9em; }
+  .sign-up .input {
+    margin: 50px 0; }
+    .sign-up .input:first-child {
+      margin-top: 0; }
+  .sign-up .phone-form {
+    display: table;
+    margin: 0 auto 2em; }
+  .sign-up .phone-label {
+    color: #817e7f;
+    transition: color .5s; }
+    .sign-up .phone-label.focus {
+      color: #1794b2; }
+    .sign-up .phone-label.valid {
+      color: #27C693; }
+    .sign-up .phone-label.error {
+      color: #B36060; }
+  .sign-up input {
+    padding: 10px;
+    outline: none; }
+  .sign-up .submit-btn {
+    font-size: .9em;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    line-height: 1em;
+    border-radius: 3px;
+    background-color: #1794b2;
+    color: #fbfbfb;
+    border: none;
+    width: 50%;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color .5s; }
+    .sign-up .submit-btn:hover {
+      background-color: #27A7C6; }
 
 /***************************************
 Footer
@@ -252,8 +259,10 @@ Desktop > 901px
   /***************************************
   Sign Up
   ***************************************/
+  .container {
+    margin-top: 4.5em; }
   .sign-up {
-    margin: 3em auto 0;
+    margin: 1em auto 0;
     font-size: 1.5em; }
     .sign-up .phone-form {
       margin: 0 auto 3em; }
