@@ -1,8 +1,8 @@
 // movitiz.js =========================
 
-var User   = require('./src/models/User.js');
-var Lyric  = require('./src/models/Lyric.js');
-var config = require('./config.js');
+var User   = require('../src/models/User.js');
+var Lyric  = require('../src/models/Lyric.js');
+var config = require('../config.js');
 
 var twilio = require('twilio')(config.twilioSID, config.twilioToken);
 
@@ -10,31 +10,24 @@ function getRandom(length) {
     return Math.floor(Math.random() * length);
 }
 
-function getLyric() {
-    var today;
-    Lyric.find({ sent: { $exists: false }}, function(err, lyrics) {
-        today = lyrics[getRandom(lyrics.length)];
-    });
-}
-
-var sendMessage = function(user, lyric) {
+var sendMessage = function(user, message) {
     var today = lyric.quote + " - " + lyric.artist + " (motiviz.js)";
     var messageData = {
         to: user.phone,
         from: config.twilioFrom,
-        body: today
+        body: message
     };
 
     twilio.sendMessage(messageData, function(err, responseData) {
         if (err) {
             console.log('twilio error', err);
-            return;
+            return cb();
         }
         if (responseData) {
             console.log('twilio response', responseData);
-        };
+            return cb();
+        }
     });
-    // console.log(messageData);
     return;
 };
 
@@ -51,8 +44,9 @@ module.exports.addLyric = function(lyric, artist, cb) {
     newLyric.save(function(err) {
         if (err) {
             console.log('An error occurred', err);
+            return cb();
         }
-        cb();
+        return cb();
     });
 };
 
@@ -73,32 +67,49 @@ module.exports.sendDaily = function(cb) {
         Lyric.find({ sent: { $exists: false }}, function(err, lyrics) {
             if (err) {
                 console.log('Could not get lyric', err);
-                return false;
+                return cb();
             }
             if (lyrics.length === 0) {
                 console.log('No lyrics found');
-                return false;
+                return cb();
             }
 
             var today = lyrics[getRandom(lyrics.length)];
+            var message = today.quote + " - " + today.artist + " (motiviz.js)";
 
             // iterate through each number
             found.forEach(function(user) {
-                sendMessage(user, today);
+                sendMessage(user, message);
             });
             today.sent = Date();
             today.save(function(err) {
                 if (err) {
                     console.log('could not update lyric sent date', err);
-                    cb();
+                    return cb();
                 }
-                cb();
+                return cb();
             });
         });
 
     });
 };
 
-module.exports.sendWelcome = function() {
+module.exports.sendWelcome = function(phone, cb) {
+    // find phone number in DB
+    User.findOne({ phone: phone }, function(err, foundUser) {
+        if (err) {
+            console.log('Could not find phone number', err);
+            return false;
+        }
+        if (foundUser.length === 0) {
+            console.log('Phone number does not exist ' + phone);
+            return false;
+        }
 
+        var message = "Welcome to motiviz.  Blood in, blood out.  Tim, where's the contact card huh?!";
+        sendMessage(foundUser, message);
+
+        return cb();
+    });
 };
+
