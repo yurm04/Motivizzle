@@ -32,7 +32,7 @@ var currentPhone = ['('];
         }
 
         var stripped = val.trim().replace(/\D/g, '');       // trim whitespace and remove non numbers
-        if (stripped.length === 10) {
+        if (stripped.length === 10 || stripped.length === 11) {
             label.classList.remove('error');
             label.classList.remove('focus');
             label.classList.add('valid');
