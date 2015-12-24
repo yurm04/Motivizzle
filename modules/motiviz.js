@@ -10,8 +10,7 @@ function getRandom(length) {
     return Math.floor(Math.random() * length);
 }
 
-var sendMessage = function(user, message) {
-    var today = lyric.quote + " - " + lyric.artist + " (motiviz.js)";
+var sendMessage = function(user, message, cb) {
     var messageData = {
         to: user.phone,
         from: config.twilioFrom,
@@ -79,15 +78,16 @@ module.exports.sendDaily = function(cb) {
 
             // iterate through each number
             found.forEach(function(user) {
-                sendMessage(user, message);
-            });
-            today.sent = Date();
-            today.save(function(err) {
-                if (err) {
-                    console.log('could not update lyric sent date', err);
-                    return cb();
-                }
-                return cb();
+                sendMessage(user, message, function() {
+                    today.sent = Date();
+                    today.save(function(err) {
+                        if (err) {
+                            console.log('could not update lyric sent date', err);
+                            return cb();
+                        }
+                        return cb();
+                    });
+                });
             });
         });
 
@@ -107,9 +107,9 @@ module.exports.sendWelcome = function(phone, cb) {
         }
 
         var message = "Welcome to motiviz.  Blood in, blood out.  Tim, where's the contact card huh?!";
-        sendMessage(foundUser, message);
-
-        return cb();
+        sendMessage(foundUser, message, function() {
+            return cb();
+        });
     });
 };
 

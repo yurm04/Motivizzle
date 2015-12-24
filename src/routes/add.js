@@ -1,6 +1,7 @@
 // add.js =============================
 
-var User = require('../models/User.js');
+var User    = require('../models/User.js');
+var motiviz = require('../../modules/motiviz.js');
 
 var validatePhone = function(phone) {
     if (!phone || phone.length < 10) {
@@ -9,8 +10,12 @@ var validatePhone = function(phone) {
 
     var sanitized = phone.trim().replace(/\D/g, '');        // replace non numeric chars with empty string
 
-    if (!sanitized || sanitized.length < 10) {
+    if (!sanitized || sanitized.length < 10 || sanitized.length > 11) {
         return false;
+    }
+
+    if (sanitized.charAt(0) !== '1' && sanitized.length !== 11) {
+        sanitized = '1' + sanitized;
     }
 
     var validFormat = '+' + sanitized;                      // saves in twillio format
@@ -50,7 +55,7 @@ module.exports.formHandler = function(req, res) {
             };
             return (res.status(409).render('signup', data));
         }
-
+        console.log('still going');
         // if no record exists create
         var user = User();
         user.phone = validPhone;
@@ -66,7 +71,14 @@ module.exports.formHandler = function(req, res) {
             var data = {
                 success : { message: "Sucessfully subscribed." }
             };
-            return (res.status(200).render('signup', data));
+            motiviz.sendWelcome(user.phone , function(err) {
+                if (err) {
+                    // handle error?
+                    return false;
+                }
+
+                return (res.status(200).render('signup', data));
+            });
         });
     });
 };

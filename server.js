@@ -36,9 +36,11 @@ app.get('/', function(req, res) {
     res.render('signup');
 });
 
+app.post('/', add.formHandler);
+
 // route handlers
-app.post('/add', add.formHandler);                  // route to form handler
-app.post('/unsubscribe', unsubscribe.remove);       // route to unsubscribe handler
+//app.post('/add', add.formHandler);                  // route to form handler
+//app.post('/unsubscribe', unsubscribe.remove);       // route to unsubscribe handler
 
 var server = app.listen(PORT, function() {
     var host = server.address().address;
