@@ -2,6 +2,10 @@
   "name": "motivizzle",
   "version": "1.0.0",
   "description": "Daily inspiration rap lyrics",
+  "engines": {
+    "node": "5.2.0",
+    "npm": "3.5.2"
+  },
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.14.2",
