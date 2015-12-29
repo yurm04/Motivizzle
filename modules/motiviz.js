@@ -3,6 +3,7 @@
 var User   = require('../src/models/User.js');
 var Lyric  = require('../src/models/Lyric.js');
 var config = require('../config.js');
+var logger = require('./logger.js');
 
 var twilio = require('twilio')(config.twilioSID, config.twilioToken);
 
@@ -19,20 +20,23 @@ var sendMessage = function(user, message, cb) {
 
     twilio.sendMessage(messageData, function(err, responseData) {
         if (err) {
-            console.log('twilio error', err);
-            return cb();
+            logger.error('Could not send twilio message: ' + err.message);
+            return cb(true);
         }
         if (responseData) {
-            console.log('twilio response', responseData);
+            if (responseData.status !== '200') {
+                logger.error('Could not send Twilio message: Twilio error.');
+                return cb(true);
+            }
             return cb();
         }
     });
-    return;
 };
 
 module.exports.addLyric = function(lyric, artist, cb) {
     if (!lyric || !artist) {
-        console.log('missing required data');
+        logger.error('Missing required data for new lyric.');
+        return cb(true);
     }
 
     var newLyric = Lyric();
@@ -42,8 +46,8 @@ module.exports.addLyric = function(lyric, artist, cb) {
 
     newLyric.save(function(err) {
         if (err) {
-            console.log('An error occurred', err);
-            return cb();
+            logger.error('Could not save new lyric.');
+            return cb(true);
         }
         return cb();
     });
@@ -53,24 +57,24 @@ module.exports.sendDaily = function(cb) {
     User.find({ active : 1 }, function(err, found) {
 
         if (err) {
-            console.log('Could not send daily text', Date().toString(), err);
-            return cb();
+            logger.error('Could not send daily message.  Unable to get users: ' + err.message);
+            return cb(true);
         }
 
         if (!found || found.length === 0 ) {
-            console.log('No users found');
-            return cb();
+            logger.error('Could not send daily message.  No Users found.');
+            return cb(true);
         }
 
         // get random quote
         Lyric.find({ sent: { $exists: false }}, function(err, lyrics) {
             if (err) {
-                console.log('Could not get lyric', err);
-                return cb();
+                logger.error('Could not get lyric: ' + err.message);
+                return cb(true);
             }
             if (lyrics.length === 0) {
-                console.log('No lyrics found');
-                return cb();
+                logger.error('No lyrics found.');
+                return cb(true);
             }
 
             var today = lyrics[getRandom(lyrics.length)];
@@ -78,12 +82,15 @@ module.exports.sendDaily = function(cb) {
 
             // iterate through each number
             found.forEach(function(user) {
-                sendMessage(user, message, function() {
+                sendMessage(user, message, function(err) {
+                    if (err) {
+                        return cb(true);
+                    }
                     today.sent = Date();
                     today.save(function(err) {
                         if (err) {
-                            console.log('could not update lyric sent date', err);
-                            return cb();
+                            logger.error('could not update lyric sent date: ' + err.message);
+                            return cb(true);
                         }
                         return cb();
                     });
@@ -98,16 +105,19 @@ module.exports.sendWelcome = function(phone, cb) {
     // find phone number in DB
     User.findOne({ phone: phone }, function(err, foundUser) {
         if (err) {
-            console.log('Could not find phone number', err);
-            return false;
+            logger.error('Could not send welcome message. Unable to get user ' + err.message);
+            return cb(true);
         }
         if (foundUser.length === 0) {
-            console.log('Phone number does not exist ' + phone);
-            return false;
+            logger.error('Phone number does not exist: ' + phone);
+            return cb(true);
         }
 
         var message = "Welcome to motiviz.  Blood in, blood out.  Tim, where's the contact card huh?!";
-        sendMessage(foundUser, message, function() {
+        sendMessage(foundUser, message, function(err) {
+            if (err) {
+                return cb(true);
+            }
             return cb();
         });
     });

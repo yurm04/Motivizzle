@@ -4,6 +4,7 @@ module.exports = {
     twilioFrom: '+19147522291',
     dbUrl : 'mongodb://127.0.0.1/motiviz',
     port : 3000,
-    dailyPath: 'test.txt'
-
+    dailyPath: 'logs/daily.log',
+    activityPath: 'logs/activity.log',
+    errorPath: 'logs/error.log'
 };

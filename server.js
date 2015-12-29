@@ -6,6 +6,7 @@ var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
 var handlebars  = require('express-handlebars');
 
+var logger      = require('./modules/logger.js');
 var add         = require('./src/routes/add.js');
 var unsubscribe = require('./src/routes/remove.js');
 var config      = require('./config.js');
@@ -14,9 +15,11 @@ var PORT        = process.env.PORT || config.port;
 // create DB connection
 mongoose.connect(config.dbUrl);
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'DB connection error: '));
+db.on('error', function(err) {
+    logger.error('Could not connect to database: ' + err.message);
+});
 db.once('open', function() {
-    console.log('successfully connected to DB');
+    logger.info('Connected to database.');
 });
 
 // set path for static files
@@ -32,19 +35,14 @@ app.set('view engine', '.handlebars');
 
 // route to homepage
 app.get('/', function(req, res) {
-    // res.sendFile(__dirname + '/index.html');
     res.render('signup');
 });
 
 app.post('/', add.formHandler);
 
-// route handlers
-//app.post('/add', add.formHandler);                  // route to form handler
-//app.post('/unsubscribe', unsubscribe.remove);       // route to unsubscribe handler
-
 var server = app.listen(PORT, function() {
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log('Listening on port ' + port);
+    logger.info('Listening on port ' + port);
 });

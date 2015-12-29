@@ -14,6 +14,10 @@ var validatePhone = function(phone) {
         return false;
     }
 
+    if (sanitized.charAt(0) === '1' || sanitized.charAt(0) === '0') {
+        return false;
+    }
+
     if (sanitized.charAt(0) !== '1' && sanitized.length !== 11) {
         sanitized = '1' + sanitized;
     }
@@ -24,9 +28,9 @@ var validatePhone = function(phone) {
 
 module.exports.formHandler = function(req, res) {
     var phone = req.body.phone;
-
+    var data;
     if (!phone) {
-        var data = {
+        data = {
             error : { message: 'Missing phone number.' }
         };
         return (res.status(400).render('signup', data));    // no phone number passed, bad request
@@ -35,7 +39,7 @@ module.exports.formHandler = function(req, res) {
     var validPhone = validatePhone(phone);
 
     if (!validPhone) {
-        var data = {
+        data = {
             error : { message: 'Invalid phone number.' }
         };
         return (res.status(400).render('signup', data));
@@ -44,37 +48,40 @@ module.exports.formHandler = function(req, res) {
     // check if number exists
     User.find({phone : validPhone}, function(err, foundPhone) {
         if (err) {
-            var data = {
+            logger.error('Could not query phone number: ' + err.message);
+            data = {
                 error : { message: 'Could not subscribe.  Try Again.' }
             };
             return (res.status(500).render('signup', data));
         }
         if (foundPhone.length > 0) {
-            var data = {
+            data = {
                 warning : { message: "Phone number already exists" }
             };
             return (res.status(409).render('signup', data));
         }
-        console.log('still going');
         // if no record exists create
         var user = User();
         user.phone = validPhone;
 
         user.save(function(err) {
             if (err) {
-                var data = {
+                logger.error('Could not save user: ' + err.message);
+                data = {
                     error : { message: 'Could not subscribe.  Try Again.' }
                 };
                 return (res.status(500).render('signup', data));
             }
 
-            var data = {
+            data = {
                 success : { message: "Sucessfully subscribed." }
             };
             motiviz.sendWelcome(user.phone , function(err) {
                 if (err) {
-                    // handle error?
-                    return false;
+                    // TODO - Figure out how to handle failed welcome
+                    // message sends in workflow.
+
+                    // return false;
                 }
 
                 return (res.status(200).render('signup', data));
