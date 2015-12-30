@@ -4,7 +4,7 @@
   "description": "Daily inspiration rap lyrics",
   "engines": {
     "node": "5.2.0",
-    "npm": "3.5.2"
+    "npm": "3.3.12"
   },
   "main": "server.js",
   "dependencies": {
