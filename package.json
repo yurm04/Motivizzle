@@ -13,6 +13,7 @@
     "express-handlebars": "^2.0.1",
     "gulp": "^3.9.0",
     "moment": "^2.10.6",
+    "mongodb-uri": "^0.9.7",
     "mongoose": "^4.3.2",
     "twilio": "^2.8.0",
     "winston": "^2.1.1"

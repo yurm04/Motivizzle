@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-var config = require('../config.js');
+var DB_URL  = process.env.DB_URL;
 var motiviz = require('../modules/motiviz.js');
 
 /*
@@ -16,7 +16,7 @@ function sendAll() {
 }
 
 function connectDb(cb) {
-    mongoose.connect(config.dbUrl);
+    mongoose.connect(DB_URL);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'DB connection error: '));
     db.once('open', function() {

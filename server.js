@@ -5,16 +5,19 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
 var handlebars  = require('express-handlebars');
+var uriUtil     = require('mongodb-uri');
 
 var logger      = require('./modules/logger.js');
 var add         = require('./src/routes/add.js');
 var unsubscribe = require('./src/routes/remove.js');
 var config      = require('./config.js');
 var PORT        = process.env.PORT || config.port;
+var DB_URL      = process.env.DB_URL;
 
 // create DB connection
-mongoose.connect(config.dbUrl);
+mongoose.connect(DB_URL);
 var db = mongoose.connection;
+// var db = mongoose.connection;
 db.on('error', function(err) {
     logger.error('Could not connect to database: ' + err.message);
 });
@@ -41,8 +44,6 @@ app.get('/', function(req, res) {
 app.post('/', add.formHandler);
 
 var server = app.listen(PORT, function() {
-    var host = server.address().address;
     var port = server.address().port;
-
     logger.info('Listening on port ' + port);
 });

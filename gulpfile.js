@@ -18,3 +18,5 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['watch', 'styles']);  // took out 'open', 'connect'
+
+gulp.task('build', ['styles', 'minifyStyles', 'minifyJs']);

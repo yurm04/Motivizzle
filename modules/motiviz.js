@@ -1,11 +1,14 @@
 // movitiz.js =========================
 
-var User   = require('../src/models/User.js');
-var Lyric  = require('../src/models/Lyric.js');
-var config = require('../config.js');
-var logger = require('./logger.js');
+var User         = require('../src/models/User.js');
+var Lyric        = require('../src/models/Lyric.js');
+var config       = require('../config.js');
+var TWILIO_SID   = process.env.TWILIO_SID;
+var TWILIO_TOKEN = process.env.TWILIO_TOKEN;
+var TWILIO_FROM  = process.env.TWILIO_FROM;
+var logger       = require('./logger.js');
 
-var twilio = require('twilio')(config.twilioSID, config.twilioToken);
+var twilio = require('twilio')(TWILIO_SID, TWILIO_TOKEN);
 
 function getRandom(length) {
     return Math.floor(Math.random() * length);
@@ -14,7 +17,7 @@ function getRandom(length) {
 var sendMessage = function(user, message, cb) {
     var messageData = {
         to: user.phone,
-        from: config.twilioFrom,
+        from: TWILIO_FROM,
         body: message
     };
 
