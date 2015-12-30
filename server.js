@@ -5,7 +5,6 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
 var handlebars  = require('express-handlebars');
-var uriUtil     = require('mongodb-uri');
 
 var logger      = require('./modules/logger.js');
 var add         = require('./src/routes/add.js');
