@@ -10,7 +10,7 @@ module.exports = new (winston.Logger)({
             name: 'error',
             filename: config.errorPath,
             level: 'error',
-            handleExceptions: true,
+            // handleExceptions: true,
         }),
         new (winston.transports.File)({
             name: 'activity',

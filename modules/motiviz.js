@@ -1,14 +1,14 @@
 // movitiz.js =========================
 
-var User         = require('../src/models/User.js');
-var Lyric        = require('../src/models/Lyric.js');
-var config       = require('../config.js');
-var TWILIO_SID   = process.env.TWILIO_SID;
-var TWILIO_TOKEN = process.env.TWILIO_TOKEN;
-var TWILIO_FROM  = process.env.TWILIO_FROM;
-var logger       = require('./logger.js');
+var User               = require('../src/models/User.js');
+var Lyric              = require('../src/models/Lyric.js');
+var config             = require('../config.js');
+var TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID;
+var TWILIO_AUTH_TOKEN  = process.env.TWILIO_AUTH_TOKEN;
+var TWILIO_FROM        = process.env.TWILIO_FROM;
+var logger             = require('./logger.js');
 
-var twilio = require('twilio')(TWILIO_SID, TWILIO_TOKEN);
+var twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 function getRandom(length) {
     return Math.floor(Math.random() * length);
