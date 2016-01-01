@@ -1,0 +1,2 @@
+{"level":"info","message":"Listening on port 3000","timestamp":"2016-01-01T00:47:07.653Z"}
+{"level":"error","message":"Could not connect to database: getaddrinfo ENOTFOUND undefined undefined:27017","timestamp":"2016-01-01T00:47:07.701Z"}
