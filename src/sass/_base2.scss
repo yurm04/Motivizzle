@@ -144,6 +144,8 @@ Sign Up
   text-align: center;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  border-top-right-radius: 0;       // for mobile
+  border-bottom-right-radius: 0;    // for mobile
   border-right-width: 1px;
   padding: 10px 12px;
 }
@@ -154,6 +156,8 @@ Sign Up
   border-left-width: 1px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  border-top-left-radius: 0;        // for mobile
+  border-bottom-left-radius: 0;     // for mobile
   padding: 10px;
 }
 .message-text {
