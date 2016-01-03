@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-var DB_URL  = process.env.DB_URL;
+var MONGOLAB_URI  = process.env.MONGOLAB_URI;
 var motiviz = require('../modules/motiviz.js');
 
 /*
@@ -19,7 +19,7 @@ function addLyrics() {
 }
 
 function connectDb(cb) {
-    mongoose.connect(DB_URL);
+    mongoose.connect(MONGOLAB_URI);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'DB connection error: '));
     db.once('open', function() {

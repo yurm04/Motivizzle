@@ -1,20 +1,20 @@
 // server.js ==========================
 
-var express     = require('express');
-var app         = express();
-var bodyParser  = require('body-parser');
-var mongoose    = require('mongoose');
-var handlebars  = require('express-handlebars');
+var express      = require('express');
+var app          = express();
+var bodyParser   = require('body-parser');
+var mongoose     = require('mongoose');
+var handlebars   = require('express-handlebars');
 
-var logger      = require('./modules/logger.js');
-var add         = require('./src/routes/add.js');
-var unsubscribe = require('./src/routes/remove.js');
-var config      = require('./config.js');
-var PORT        = process.env.PORT || config.port;
-var DB_URL      = process.env.DB_URL;
+var logger       = require('./modules/logger.js');
+var add          = require('./src/routes/add.js');
+var unsubscribe  = require('./src/routes/remove.js');
+var config       = require('./config.js');
+var PORT         = process.env.PORT || config.port;
+var MONGOLAB_URI = process.env.MONGOLAB_URI;
 
 // create DB connection
-mongoose.connect(DB_URL);
+mongoose.connect(MONGOLAB_URI);
 var db = mongoose.connection;
 // var db = mongoose.connection;
 db.on('error', function(err) {
