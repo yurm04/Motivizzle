@@ -116,7 +116,7 @@ module.exports.sendWelcome = function(phone, cb) {
             return cb(true);
         }
 
-        var message = "Welcome to motiviz.  Blood in, blood out.  Tim, where's the contact card huh?!";
+        var message = "Welcome to motiviz. If you did not sign up for this simply respond with 'No'. Otherwise, enjoy, and don't forget to add us to your contacts.";
         sendMessage(foundUser, message, function(err) {
             if (err) {
                 return cb(true);
