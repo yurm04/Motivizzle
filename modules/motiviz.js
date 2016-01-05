@@ -14,14 +14,18 @@ function getRandom(length) {
     return Math.floor(Math.random() * length);
 }
 
-var sendMessage = function(user, message, cb) {
+var sendMessage = function(user, message, vCard, cb) {
     var messageData = {
         to: user.phone,
         from: TWILIO_FROM,
         body: message
     };
 
-    twilio.sendMessage(messageData, function(err, responseData) {
+    if (vCard) {
+        messageData.mediaUrl = vCard;
+    }
+
+    twilio.messages.create(messageData, function(err, responseData) {
         if (err) {
             logger.error('Could not send twilio message: ' + err.message);
             return cb(true);
@@ -85,7 +89,7 @@ module.exports.sendDaily = function(cb) {
 
             // iterate through each number
             found.forEach(function(user) {
-                sendMessage(user, message, function(err) {
+                sendMessage(user, message, null, function(err) {
                     if (err) {
                         return cb(true);
                     }
@@ -116,8 +120,10 @@ module.exports.sendWelcome = function(phone, cb) {
             return cb(true);
         }
 
-        var message = "Welcome to motiviz. If you did not sign up for this simply respond with 'No'. Otherwise, enjoy, and don't forget to add us to your contacts.";
-        sendMessage(foundUser, message, function(err) {
+        var message = config.welcomeMessage;
+        var vCard = config.vCardUrl;
+
+        sendMessage(foundUser, message, vCard, function(err) {
             if (err) {
                 return cb(true);
             }

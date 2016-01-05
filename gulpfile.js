@@ -32,7 +32,7 @@ gulp.task('compressJs', function() {
 // watch files for live reload
 gulp.task('watch', function() {
     gulp.watch('app/index.html', ['html']);
-    gulp.watch('src/sass/**/*.scss', ['styles']);
+    gulp.watch('src/sass/**/*.scss', ['stylesDev']);
 });
 
 gulp.task('default', ['watch', 'stylesDev', 'js']);  // took out 'open', 'connect'
