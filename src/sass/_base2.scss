@@ -51,6 +51,15 @@ p {
   font-size: $p;
 }
 
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /***************************************
 Body
 ***************************************/
