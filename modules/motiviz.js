@@ -21,9 +21,9 @@ var sendMessage = function(user, message, vCard, cb) {
         body: message
     };
 
-    if (vCard) {
-        messageData.mediaUrl = vCard;
-    }
+   // if (vCard) {
+   //     messageData.mediaUrl = vCard;
+   // }
 
     twilio.messages.create(messageData, function(err, responseData) {
         if (err) {
@@ -85,7 +85,7 @@ module.exports.sendDaily = function(cb) {
             }
 
             var today = lyrics[getRandom(lyrics.length)];
-            var message = today.quote + " - " + today.artist + " (motiviz.js)";
+            var message = today.quote + " - " + today.artist;
 
             // iterate through each number
             found.forEach(function(user) {
