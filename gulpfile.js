@@ -33,6 +33,7 @@ gulp.task('compressJs', function() {
 gulp.task('watch', function() {
     gulp.watch('app/index.html', ['html']);
     gulp.watch('src/sass/**/*.scss', ['stylesDev']);
+    gulp.watch('src/js/**/*.js', ['js'])
 });
 
 gulp.task('default', ['watch', 'stylesDev', 'js']);  // took out 'open', 'connect'
