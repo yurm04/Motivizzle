@@ -12,6 +12,7 @@
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
     "gulp": "^3.9.0",
+    "helmet": "^1.0.1",
     "mongoose": "^4.3.2",
     "twilio": "^2.8.0",
     "winston": "^2.1.1"
