@@ -5,7 +5,6 @@
     var submit      = document.getElementById('phone-submit');
     var phoneFormat = '(_ _ _)  _ _ _ _ - _ _ _ _';
 
-
     phone.setAttribute('placeholder', phoneFormat);
 
     phone.addEventListener('focus', togglePhone);
@@ -13,6 +12,8 @@
     phone.addEventListener('blur', validatePhone);
 
     submit.addEventListener('click', validatePhone);
+
+    $("#phone-input").mask("(9 9 9) 9 9 9 - 9 9 9 9");
 
     function togglePhone() {
         toggle(label, 'focus');

@@ -3,6 +3,7 @@
 var express      = require('express');
 var app          = express();
 var bodyParser   = require('body-parser');
+var helmet       = require('helmet');
 var mongoose     = require('mongoose');
 var handlebars   = require('express-handlebars');
 
@@ -23,6 +24,9 @@ db.on('error', function(err) {
 db.once('open', function() {
     logger.info('Connected to database.');
 });
+
+//
+app.use(helmet());
 
 // set path for static files
 app.use(express.static(__dirname + '/public'));
