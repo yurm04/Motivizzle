@@ -31,11 +31,11 @@ var sendMessage = function(user, message, vCard, cb) {
             return cb(true);
         }
         if (responseData) {
-            if (responseData.status !== '200') {
+            if (responseData.error_code !== null || responseData.error_message !== null) {
                 logger.error('Could not send Twilio message: Twilio error.');
                 return cb(true);
             }
-            return cb();
+            return cb(null);
         }
     });
 };
@@ -56,7 +56,7 @@ module.exports.addLyric = function(lyric, artist, cb) {
             logger.error('Could not save new lyric.');
             return cb(true);
         }
-        return cb();
+        return cb(null);
     });
 };
 
@@ -99,7 +99,7 @@ module.exports.sendDaily = function(cb) {
                             logger.error('could not update lyric sent date: ' + err.message);
                             return cb(true);
                         }
-                        return cb();
+                        return cb(null);
                     });
                 });
             });
@@ -127,7 +127,7 @@ module.exports.sendWelcome = function(phone, cb) {
             if (err) {
                 return cb(true);
             }
-            return cb();
+            return cb(null);
         });
     });
 };
