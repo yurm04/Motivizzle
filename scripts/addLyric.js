@@ -12,21 +12,14 @@ and then close database connection through callback
 connectDb(addLyrics);
 
 function addLyrics() {
-    motiviz.addLyric("We can’t change the world until we change ourselves.", 'Biggie Smalls', closeConnection);
-    motiviz.addLyric("You have to keep your vision clear, cause only a coward lives in fear.", 'Nas', closeConnection);   
-    motiviz.addLyric("Living life is a choice. Making a difference in someone else’s isn’t", 'Kid Cudi', closeConnection);
-    motiviz.addLyric("Damn right I like the life I live, cause I went from negative to positive.", 'Biggie Smalls', closeConnection);
-    motiviz.addLyric("Life is a crazy ride and nothing is guaranteed.", 'Eminem', closeConnection);   
-    motiviz.addLyric("Living well eliminates the need for revenge.", 'Kanye West', closeConnection);
-    motiviz.addLyric("If you’re scared to take chances, you’ll never have the answers.", 'Nas', closeConnection);
-    motiviz.addLyric("Forget yesterday, live for today. Tomorrow will take care of itself.", 'Rick Ross', closeConnection);
-    motiviz.addLyric("We can't change the world until we change ourselves", 'Biggie Smalls', closeConnection);
-    motiviz.addLyric("If you admire someone, you should go ahead and tell them. People never get the flowers while they can still smell them.", 'Kanye West', closeConnection);
-    motiviz.addLyric("No matter where life takes me. Find me with a smile.", 'Mac Miller', closeConnection);
-    motiviz.addLyric("When people treat you like nothing, you begin to feel like nothing.", 'Drake', closeConnection);
-    motiviz.addLyric("You can make something of your life, it just depends on your drive.", 'Eminem', closeConnection);
-    motiviz.addLyric("Never apologize for what you feel. It’s like apologizing for being real.", 'Lil Wayne', closeConnection);
-    motiviz.addLyric("Regardless of how it goes down, life goes on.", 'Rick Ross', closeConnection);
+    motiviz.addLyric("I got a million ways to get it. Choose one.", 'Jay Z', closeConnection);
+    motiviz.addLyric("I'm like Che Guevara with bling on, I'm complex, never claimed to have wings on", 'Jay Z', closeConnection);
+    motiviz.addLyric("Man, you was who you was 'fore you got here", 'Jay Z', closeConnection);
+    motiviz.addLyric("Swear to everything, when I leave this Earth, it’s gon’ be on both feet, never knees in the dirt", 'Jay Z', closeConnection);
+    motiviz.addLyric("Everybody can tell you how they do it, they never did.", 'Jay Z', closeConnection);
+    motiviz.addLyric("It drops deep as it does in my breath. I never sleep, cause sleep is the cousin of death. Beyond the walls of intelligence, life is defined.", 'Nas', closeConnection);
+    motiviz.addLyric("Man, you was who you was 'fore you got here", 'Jay Z', closeConnection);
+
 }
 
 function connectDb(cb) {
