@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Daily inspiration rap lyrics",
   "engines": {
-    "node": "5.2.0",
+    "node": "4.2.4",
     "npm": "3.3.12"
   },
   "main": "server.js",
