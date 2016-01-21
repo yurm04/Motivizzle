@@ -9,6 +9,7 @@ var handlebars   = require('express-handlebars');
 
 var logger       = require('./modules/logger.js');
 var add          = require('./src/routes/add.js');
+var quote        = require('./src/routes/quote.js');
 var unsubscribe  = require('./src/routes/remove.js');
 var config       = require('./config.js');
 var PORT         = process.env.PORT || config.port;
@@ -44,7 +45,11 @@ app.get('/', function(req, res) {
     res.render('signup');
 });
 
+// route to get random quote
+app.get('/quote', quote.getRandom);
+
 app.post('/', add.formHandler);
+
 
 var server = app.listen(PORT, function() {
     var port = server.address().port;

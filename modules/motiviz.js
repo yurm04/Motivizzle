@@ -108,6 +108,22 @@ module.exports.sendDaily = function(cb) {
     });
 };
 
+module.exports.getRandomQuote = function(cb) {
+    Lyric.find({}, function(err, lyrics) {
+        if (err) {
+            logger.error('Could not get random lyric: ' + err.message);
+            return cb(err);
+        }
+
+        if (lyrics.length) {
+            var quote = lyrics[getRandom(lyrics.length)];
+            var message = quote.quote + " - " + quote.artist;
+
+            return cb(null, message);
+        }
+    });
+};
+
 module.exports.sendWelcome = function(phone, cb) {
     // find phone number in DB
     User.findOne({ phone: phone }, function(err, foundUser) {
